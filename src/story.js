@@ -1,7 +1,7 @@
-import {FAMILY,familyReady} from './family.js?v=16';
-import {SHOT_SECONDS} from './cinema.js?v=16';
-import {openInvestigation,investigate} from './investigation.js?v=16';
-import {actor,POINTS as P,walk,route} from './world.js?v=16';
+import {FAMILY,familyReady} from './family.js?v=17';
+import {SHOT_SECONDS} from './cinema.js?v=17';
+import {openInvestigation,investigate} from './investigation.js?v=17';
+import {actor,POINTS as P,walk,route} from './world.js?v=17';
 export const NAMES={ej:'은재',mom:'엄마',dad:'아빠',yd:'어린 아빠',voice:'할아버지'};
 export const CHAPTER={prologue:'2026 · 사진 상자',mom:'1993 · 다대포의 마당',bridge:'2026 · 두 번째 사진',dad:'1991 · 양산의 골목',final:'2026 · 돌아온 집',ending:'우리의 다음 장'};
 export function initial(A){return {version:1,chapter:'prologue',phase:'box',scene:'home',t:0,queue:[['mom','은재야, 사진 상자 좀 같이 정리할까?']],after:null,actors:{ej:actor('ej',1040,900,A.walk.ej,'up'),mom:actor('mom',...P.mom,A.walk.mom),dad:actor('dad',...P.dad,A.walk.dad)},flags:{},events:[],failed:0,carry:false,timer:null,hold:0,holding:false,photos:[],ended:false};}
@@ -75,7 +75,7 @@ export function tick(G,A,input,dt){G.t+=dt;
  if(G.phase==='shutterWait'){G.actors.ej.face='down';G.actors.yd.face='down';}if(G.queue.length)return;
  walk(G.actors.ej,input,dt,G.scene,A.walk.ej,Object.values(G.actors));
  if(G.phase==='posing'&&G.photographer?.ready&&!G.actors.ej.path?.length&&!G.actors.yd.path?.length){for(const a of Object.values(G.actors)){a.face='down';a.moving=false;a.gait.mode='idle';}G.phase='shutterWait';say(G,[['yd','은재야, 다음엔 네 차례야.'],['ej','응. 또 같이 하고 싶어.'],['voice','둘이 조금 붙어 봐. 그래, 여기 보렴.']],'shootDad');}
- if(G.timer!==null){for(const a of Object.values(G.actors))if(!a.path?.length&&!a.moving)a.face='down';G.timer-=dt;if(G.timer<=0){G.timer=null;const e=G.actors.ej,d=G.actors.dad;if(familyReady(G)){G.shot={kind:'family',at:G.t};G.flags.shutter=G.t;G.flags.family=true;for(const a of Object.values(G.actors))a.face='down';log(G,'family-shot');}else{G.phase='timer';G.failed++;say(G,[['dad','아직 자리에 못 왔네. 괜찮아, 다시 찍자.']]);log(G,'retry',{cause:'timer'});}}}
+ if(G.timer!==null){for(const a of Object.values(G.actors))if(!a.path?.length&&!a.moving)a.face='down';G.timer-=dt;if(G.timer<=0){G.timer=null;const e=G.actors.ej,d=G.actors.dad;if(familyReady(G)){G.shot={kind:'family',at:G.t};G.flags.shutter=G.t;G.flags.family=true;for(const a of Object.values(G.actors)){a.face='down';a.moving=false;a.gait.mode='idle';}G.flags.familyCapture=structuredClone(G.actors);log(G,'family-shot');}else{G.phase='timer';G.failed++;say(G,[['dad','아직 자리에 못 왔네. 괜찮아, 다시 찍자.']]);log(G,'retry',{cause:'timer'});}}}
 }
 
 function startStrike(G,kind){const smooth=G.flags.surface==='smooth',x=smooth?1210:420,y=smooth?720:680;G.beat={at:null,kind};G.actors.yd.path=route('alley',G.actors.yd,[x-46,y+8]);}

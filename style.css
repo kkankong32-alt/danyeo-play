@@ -43,3 +43,15 @@ button:focus-visible{outline:3px solid #e3b957;outline-offset:3px}
 html,body{height:100%;overflow:hidden}main{height:100dvh;min-height:0;display:flex;flex-direction:column}.stage{flex:1 1 0;min-height:0;min-width:0;overflow:hidden}canvas{flex:none;max-height:none;max-width:100%;width:auto;height:auto}header,#journeyHint,#actionHint,footer{flex-shrink:0}#journeyHint{max-height:130px;overflow-y:auto}#actionHint{max-height:70px;overflow-y:auto}
 @media(max-width:650px){header{height:44px}#journeyHint{min-height:64px;font-size:16px}footer{min-height:54px}.stage{flex:1 1 0}canvas{max-height:none}footer>span:first-child{font-size:11px}}
 body:has(#developer:not([hidden])){overflow:auto}main:has(#developer:not([hidden])){height:auto;min-height:100dvh}main:has(#developer:not([hidden])) .stage{flex:none;height:70vh}
+
+/* v17: memory-book typography. One local subset font, no external font service. */
+@font-face{font-family:'Danyeo Memory';src:url('assets/fonts_v17/memory-bold.woff') format('woff');font-style:normal;font-weight:700;font-display:swap}
+:root{--memory-font:'Danyeo Memory','Batang',serif}
+#menu h1{font-family:var(--memory-font);font-weight:700;letter-spacing:-.035em;line-height:1.4;text-shadow:0 2px 12px #102b2570}
+#menu>p:not(.small),header strong,#photoTitle{font-family:var(--memory-font);font-weight:700}
+#menu>p:not(.small){font-size:clamp(16px,1.4vw,20px);line-height:1.9}
+#journeyHint.dialogue,#photoLine{font-family:var(--memory-font);font-weight:700;letter-spacing:0;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere;color:#332c25}
+#journeyHint.dialogue{font-size:clamp(18px,1.5vw,23px);background:#fff8e9;border-top:1px solid #baaa8e}
+#photoTitle{letter-spacing:-.025em;line-height:1.5}
+#menu button{font-size:16px;letter-spacing:.015em}
+@media(max-width:650px){#journeyHint.dialogue{font-size:18px;line-height:1.65;max-height:150px}#photoLine{font-size:17px;line-height:1.7}#menu h1{font-size:38px}#photoTitle{font-size:23px}}

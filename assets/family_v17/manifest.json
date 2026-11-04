@@ -848,22 +848,6 @@
       ],
       "lossless": true
     },
-    "assets/sprites_v14/family_smile.png": {
-      "url": "assets/performance_v16/03190bd7da404209.webp",
-      "offset": [
-        0,
-        0
-      ],
-      "originalSize": [
-        1086,
-        1448
-      ],
-      "size": [
-        1086,
-        1448
-      ],
-      "lossless": true
-    },
     "assets/sprites_v14/gd_walk.png": {
       "url": "assets/performance_v16/ab589b557ce3d4e3.webp",
       "offset": [
@@ -924,12 +908,5 @@
     "assets/runtime/production/characters/ym/ym_walk_v01.json",
     "assets/sprites_v14/gd_walk.json",
     "assets/yd.json"
-  ],
-  "stats": {
-    "sourceBytes": 69247174,
-    "packedBytes": 29030000,
-    "sourcePixels": 174786547,
-    "packedPixels": 78530763,
-    "losslessVerified": 47
-  }
+  ]
 }

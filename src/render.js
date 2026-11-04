@@ -1,9 +1,9 @@
-import {FAMILY,familyPoseMix} from './family.js?v=16';
-import {handAnchor} from './cinema.js?v=16';
-import {H,SCENE_SCALE} from './world.js?v=16';
-import {gaitColumn} from '../zone/gait.js?v=16';
-import {objects,nearby,objective,NAMES,CHAPTER} from './story.js?v=16';
-const FONT='"Malgun Gothic",sans-serif';
+import {FAMILY,familyPoseMix,familyLean} from './family.js?v=17';
+import {handAnchor} from './cinema.js?v=17';
+import {H,SCENE_SCALE} from './world.js?v=17';
+import {gaitColumn} from '../zone/gait.js?v=17';
+import {objects,nearby,objective,NAMES,CHAPTER} from './story.js?v=17';
+const FONT='"Danyeo Memory","Batang",serif';
 // Trace actual furniture silhouettes in the 1536x1024 source. Never repaint floor rectangles.
 const FURNITURE=[{foot:800,shapes:[[[139,608],[154,587],[154,489],[229,466],[290,486],[298,544],[389,547],[437,583],[453,616],[442,649],[151,688],[139,661]],[[145,658],[168,660],[168,755],[145,755]],[[198,676],[219,675],[219,732],[198,739]],[[407,651],[431,645],[431,713],[409,720]]]},{foot:800,shapes:[[[1227,533],[1505,529],[1520,548],[1518,570],[1512,570],[1512,753],[1494,758],[1494,738],[1251,738],[1251,754],[1231,754],[1231,570],[1227,570]]]}];
 function furnitureOcclusion(c,im,a){for(const f of FURNITURE){if(a.y>=f.foot)continue;c.save();c.beginPath();for(const poly of f.shapes){poly.forEach(([x,y],i)=>i?c.lineTo(x*1.25,y*1080/1024):c.moveTo(x*1.25,y*1080/1024));c.closePath();}c.clip();c.drawImage(im,0,0,1920,1080);c.restore();}}
@@ -40,7 +40,7 @@ export function scene(c,A,G){c.setTransform(1,0,0,1,0,0);const im=A.extra[G.scen
  }
  let drawnPhotographer=false;
  for(const a of actors){
-  c.save();if(embrace)c.globalAlpha=1-embrace;
+  c.save();
   if(G.photographer&&!drawnPhotographer&&G.photographer.y<a.y){photographer(c,A,G.photographer);drawnPhotographer=true;}
   const active=a.id==='yd'&&(G.holding||G.beat?.at!=null);
   const held=a.id==='ej'&&G.scene==='alley'&&!G.action&&(G.carry||G.flags.spareTile);
@@ -50,20 +50,20 @@ export function scene(c,A,G){c.setTransform(1,0,0,1,0,0);const im=A.extra[G.scen
   else if(a.id==='dad'&&['camera','shelf'].includes(G.phase)&&!G.flags.cameraPlaced){dadCamera(c,A,a);}
   else if(active){const age=G.beat?G.t-G.beat.at:0,col=G.holding?(G.hold>=1.2?1:0):(age<.7?2:age<1.35?3:1),sc=H.yd*SCENE_SCALE.alley/420;
    const smooth=G.flags.surface==='smooth',tx=smooth?1210:420,ty=smooth?720:680;const ax=a.x,ay=a.y;c.drawImage(A.extra.ydActions,col*360,0,360,480,ax-180*sc,ay-450*sc,360*sc,480*sc);
-  }else if(G.flags.family&&['mom','dad'].includes(a.id)){c.save();c.translate(a.x,a.y);c.rotate(a.id==='mom'?.035:-.035);c.translate(-a.x,-a.y);sprite(c,A,a,SCENE_SCALE[G.scene]);c.restore();}else sprite(c,A,a,SCENE_SCALE[G.scene]);
+  }else if(embrace&&['mom','dad'].includes(a.id)){c.save();c.translate(a.x,a.y);c.rotate(familyLean(a.id,embrace));c.translate(-a.x,-a.y);sprite(c,A,a,SCENE_SCALE[G.scene]);c.restore();}else sprite(c,A,a,SCENE_SCALE[G.scene]);
   if(held&&a.face!=='up')carry(c,A,a,G.carry?1:0,G.carry?39:30);
 
   if(G.scene==='home')furnitureOcclusion(c,im,a);
   c.restore();
  }
- if(embrace){const im=A.extra.familyPose,sc=H.dad*SCENE_SCALE.home*.96/im.height,w=im.width*sc;c.save();c.globalAlpha=embrace;for(const p of Object.values(FAMILY)){c.fillStyle='#59473730';c.beginPath();c.ellipse(p[0],p[1],26,6,0,0,Math.PI*2);c.fill();}c.drawImage(im,1040-w/2,760-im.height*sc,w,im.height*sc);c.restore();}
+
  if(G.photographer&&!drawnPhotographer)photographer(c,A,G.photographer);
  if(G.scene==='home'&&G.action?.kind==='mount')c.drawImage(A.extra.tripod,0,130,360,350,1040-90,960-160,180,175);
  if(G.scene==='home'&&G.flags.cameraPlaced)c.drawImage(A.extra.tripod,0,0,360,480,1040-90,960-225,180,240);
 }
 export function panel(c,x,y,w,h){c.fillStyle='#fbf3e5f5';c.strokeStyle='#c5b08a';c.lineWidth=2;c.beginPath();c.roundRect(x,y,w,h,15);c.fill();c.stroke();}
 export function drawPhoto(c,im,x,y,w,h){const k=Math.min(w/im.width,h/im.height);c.fillStyle='#ece0c9';c.fillRect(x,y,w,h);c.drawImage(im,x+(w-im.width*k)/2,y+(h-im.height*k)/2,im.width*k,im.height*k);}
-export function text(c,t,x,y,size=28,color='#352d24'){c.font=`500 ${size}px ${FONT}`;c.fillStyle=color;c.fillText(t,x,y);}
+export function text(c,t,x,y,size=28,color='#352d24'){c.font=`700 ${size}px ${FONT}`;c.fillStyle=color;c.fillText(t,x,y);}
 export function wrap(c,t,max){let rows=[],line='';for(const ch of t){if(c.measureText(line+ch).width>max){rows.push(line);line=ch;}else line+=ch;}if(line)rows.push(line);return rows;}
 export function ui(c,A,G,photos){
  if(G.ended)endingAlbum(c,G,photos);

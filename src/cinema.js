@@ -7,7 +7,7 @@ export function photoDissolve(c,im,age){
  c.fillStyle=`rgba(45,35,25,${ease*.55})`;c.fillRect(0,0,1920,1080);
  const w=1480-120*ease,h=w*im.height/im.width,x=(1920-w)/2,y=(1080-h)/2-18*ease;
  c.globalAlpha=ease;c.shadowColor='#31271870';c.shadowBlur=35;c.fillStyle='#fcf4df';c.fillRect(x-18,y-18,w+36,h+66);c.shadowBlur=0;c.drawImage(im,x,y,w,h);
- c.fillStyle='#75654c';c.font='24px "Malgun Gothic",sans-serif';c.textAlign='center';c.fillText('함께 있던 순간은 사진 안에 남았다.',960,y+h+36);
+ c.fillStyle='#75654c';c.font='700 24px "Danyeo Memory","Batang",serif';c.textAlign='center';c.fillText('함께 있던 순간은 사진 안에 남았다.',960,y+h+36);
  c.restore();
 }
 // Hand coordinates are in the original sprite cell, never arbitrary world offsets.

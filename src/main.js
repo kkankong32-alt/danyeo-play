@@ -1,23 +1,23 @@
-import {FAMILY} from './family.js?v=16';
-import {photoDissolve,SHOT_SECONDS} from './cinema.js?v=16';
-import {createDirector} from './director.js?v=16';
-import {createMusic} from './music.js?v=16';
-import {openInvestigation} from './investigation.js?v=16';
-import {createPhotoUI} from './photo-ui.js?v=16';
-import {loadAssets} from './assets.js?v=16';
-import * as Story from './story.js?v=16';
-import * as World from './world.js?v=16';
-import {scene,ui,text,drawPhoto} from './render.js?v=16';
-import {createSim,step,act,clickTo,interactable,goTo} from '../zone/sim.js?v=16';
-import {createRenderer} from '../zone/render.js?v=16';
-import {BLOCKED,HEIGHT,SPOT,VIEW,STAIRS} from '../zone/zone.js?v=16';
-import {NAME,objective as zoneObjective} from '../zone/story.js?v=16';
+import {FAMILY,FAMILY_CROP} from './family.js?v=17';
+import {photoDissolve,SHOT_SECONDS} from './cinema.js?v=17';
+import {createDirector} from './director.js?v=17';
+import {createMusic} from './music.js?v=17';
+import {openInvestigation} from './investigation.js?v=17';
+import {createPhotoUI} from './photo-ui.js?v=17';
+import {loadAssets} from './assets.js?v=17';
+import * as Story from './story.js?v=17';
+import * as World from './world.js?v=17';
+import {scene,ui,text,drawPhoto} from './render.js?v=17';
+import {createSim,step,act,clickTo,interactable,goTo} from '../zone/sim.js?v=17';
+import {createRenderer} from '../zone/render.js?v=17';
+import {BLOCKED,HEIGHT,SPOT,VIEW,STAIRS} from '../zone/zone.js?v=17';
+import {NAME,objective as zoneObjective} from '../zone/story.js?v=17';
 const domNodes=new Map();
 const cv=document.querySelector('#view'),c=cv.getContext('2d'),$=s=>domNodes.get(s)||(domNodes.set(s,document.querySelector(s)),domNodes.get(s)),dev=new URLSearchParams(location.search).get('dev')==='1';
 const KEY='danyeo:full-v005:save-complete4',AUDIT='danyeo:full-v005:audit-complete4';
 let watching=false,director=null,autoTarget=null;
 const stage=cv.parentElement;const fitCanvas=()=>{const w=Math.max(1,Math.min(stage.clientWidth,stage.clientHeight*16/9));cv.style.width=w+'px';cv.style.height=w*9/16+'px';};new ResizeObserver(fitCanvas).observe(stage);addEventListener('fullscreenchange',fitCanvas);
-let photoUI,A,G,Z,ZR,photos={},keys=new Set(),started=false,audit=[],lastSave=0,checkpoint=null,music=null,fxBus=null,lastFxMuted=null,muted=localStorage.getItem('danyeo:muted')==='1',audio=null,lastStep=0,lastBeep=-1,lastChapter="",lastPhotos=0,paused=true,transition=0;
+let photoUI,A,G,Z,ZR,photos={},familyCaptureKey=null,keys=new Set(),started=false,audit=[],lastSave=0,checkpoint=null,music=null,fxBus=null,lastFxMuted=null,muted=localStorage.getItem('danyeo:muted')==='1',audio=null,lastStep=0,lastBeep=-1,lastChapter="",lastPhotos=0,paused=true,transition=0;
 function setText(node,value){if(node.textContent!==value)node.textContent=value;}
 function tone(freq=440,duration=.08,gain=.025){if(muted||!audio)return;const o=audio.createOscillator(),n=audio.createGain();o.type='sine';o.frequency.value=freq;n.gain.setValueAtTime(gain,audio.currentTime);n.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+duration);o.connect(n).connect(fxBus);o.start();o.stop(audio.currentTime+duration);}
 function photoSound(kind){
@@ -31,8 +31,8 @@ function photoSound(kind){
 document.addEventListener('pointerdown',()=>soundStart(),{once:true});
 function soundStart(){if(!audio){audio=new AudioContext();fxBus=audio.createGain();fxBus.gain.value=muted?0:1;fxBus.connect(audio.destination);music=createMusic(audio,(event,data)=>{record(event,data);console.info(event,JSON.stringify(data));});}if(!paused||!started)audio.resume();}
 function resetCamera(){ZR.R.camLock=null;ZR.R.zoom=1.1;}
-function fresh(){resetCamera();document.body.classList.toggle('watching',watching);autoTarget=null;lastPhotos=0;transition=0;G=Story.initial(A);G.watching=watching;ZR.R.watching=watching;Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.a.gd.pose=null;ZR.snapCamera(Z);audit=[];checkpoint=null;lastSave=-10;started=true;paused=false;keys.clear();save(true);}
-function restore(){resetCamera();ZR.R.watching=false;document.body.classList.remove('watching');try{const s=JSON.parse(localStorage.getItem(KEY));if(s?.version!==1)return false;G=s.G;Z=s.Z||createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.npcMeta=A.walk;Z.gaitMeta=A.walk.ej;checkpoint=s;ZR.snapCamera(Z);audit=JSON.parse(localStorage.getItem(AUDIT)||'{}').inputs||[];started=true;paused=false;keys.clear();audit.push({event:'resume',time:Date.now(),chapter:G.chapter});return true;}catch{return false;}}
+function fresh(){resetCamera();refreshFamilyPhoto();document.body.classList.toggle('watching',watching);autoTarget=null;lastPhotos=0;transition=0;G=Story.initial(A);G.watching=watching;ZR.R.watching=watching;Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.a.gd.pose=null;ZR.snapCamera(Z);audit=[];checkpoint=null;lastSave=-10;started=true;paused=false;keys.clear();save(true);}
+function restore(){resetCamera();ZR.R.watching=false;document.body.classList.remove('watching');try{const s=JSON.parse(localStorage.getItem(KEY));if(s?.version!==1)return false;G=s.G;Z=s.Z||createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.npcMeta=A.walk;Z.gaitMeta=A.walk.ej;checkpoint=s;ZR.snapCamera(Z);audit=JSON.parse(localStorage.getItem(AUDIT)||'{}').inputs||[];refreshFamilyPhoto(G.flags.familyCapture);started=true;paused=false;keys.clear();audit.push({event:'resume',time:Date.now(),chapter:G.chapter});return true;}catch{return false;}}
 function safe(){return G.chapter==='mom'?!Z.talk.length&&!Z.script.length&&!Z.card:!G.queue.length&&!G.holding&&!G.action&&!G.beat&&G.timer===null;}
 function save(force=false){if(!started||dev||watching)return;const now=performance.now();if(!force&&now-lastSave<1200)return;lastSave=now;
  try{if(safe()||force&&G.chapter==='prologue'){checkpoint={version:1,saved:new Date().toISOString(),G:structuredClone(G),Z:G.chapter==='mom'?JSON.parse(JSON.stringify(Z)):null};localStorage.setItem(KEY,JSON.stringify(checkpoint));setText($('#saveNote'),'저장됨');}else setText($('#saveNote'),'진행 중');localStorage.setItem(AUDIT,JSON.stringify({mode:dev?'developer':'normal',started:new Date().toISOString(),chapter:G.chapter,phase:G.phase,ended:G.ended,events:G.events,zoneEvents:G.zoneEvents||Z.log,seek:G.zoneSeek||Z.seek,failed:G.failed,photos:G.photos,inputs:audit}));}catch{setText($('#saveNote'),'저장 공간을 확인해 주세요');}}
@@ -50,11 +50,20 @@ async function makePhotos(){
  const m=make(),s=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});s.talk=[];s.card=null;s.seek.stage='photo';s.ended=true;
  for(const [id,p]of Object.entries(SPOT.photo))Object.assign(s.a[id],{x:p[0],y:p[1],face:'down',pose:null,moving:false});Object.assign(s.a.gd,{x:1990,y:1560,pose:null});
  const r=createRenderer(m.getContext('2d'),PA,{zoom:2.5});r.R.camLock=[1570,1380];r.R.hide='gd';r.draw(s,0);photos.mom=m;
- for(const id of ['dad','family']){const v=make(),g=Story.initial(A);g.queue=[];g.flags={};if(id==='dad'){g.scene='alley';g.phase='photo';g.flags={fold:'locked',surface:'smooth',laneClear:true,spareTile:true,flipAt:-10};g.actors={ej:World.actor('ej',1130,690,A.walk.ej),yd:World.actor('yd',1280,690,A.walk.yd)};}else{for(const[id,p]of Object.entries(FAMILY))Object.assign(g.actors[id],{x:p[0],y:p[1]});g.flags.family=true;g.flags.familyPortrait=true;for(const a of Object.values(g.actors))a.face='down';}scene(v.getContext('2d'),PA,g);const cropped=make();const box=id==='dad'?[830,40,1000,750]:[680,290,720,540];cropped.width=1600;cropped.height=1200;cropped.getContext('2d').drawImage(v,...box,0,0,cropped.width,cropped.height);photos[id]=cropped;}
+ const v=make(),g=Story.initial(A);g.queue=[];g.scene='alley';g.phase='photo';g.flags={fold:'locked',surface:'smooth',laneClear:true,spareTile:true,flipAt:-10};g.actors={ej:World.actor('ej',1130,690,A.walk.ej),yd:World.actor('yd',1280,690,A.walk.yd)};scene(v.getContext('2d'),PA,g);const cropped=make();cropped.width=1600;cropped.height=1200;cropped.getContext('2d').drawImage(v,830,40,1000,750,0,0,1600,1200);photos.dad=cropped;
+ refreshFamilyPhoto();
  photos.mom=A.extra.photoMom; // Family keeps the exact actors and room from the shutter scene.
  // One locked image per era: initial inspection, shutter and return share these pixels.
  const details={};for(const kind of ['mom','dad']){const original=photos[kind],v=document.createElement('canvas');v.width=original.width;v.height=original.height;const q=v.getContext('2d');q.drawImage(original,0,0);const r=kind==='mom'?[1036,542,30,48]:[510,850,22,34];const clean=kind==='mom'?A.extra.momBag:A.extra.dadBag,bx=r[0]-5,by=r[1]-3,bw=r[2]+10,bh=r[3]+7; if(kind==='mom')q.drawImage(clean,bx/original.width*clean.width,by/original.height*clean.height,bw/original.width*clean.width,bh/original.height*clean.height,bx,by,bw,bh);else {const patch=document.createElement('canvas');patch.width=48;patch.height=68;const pc=patch.getContext('2d');pc.drawImage(clean,clean.width*.315,clean.height*.568,clean.width*.008,clean.height*.021,0,0,48,68);pc.globalCompositeOperation='destination-in';pc.save();pc.scale(1,68/48);const fade=pc.createRadialGradient(24,24,15,24,24,24);fade.addColorStop(0,'#fff');fade.addColorStop(1,'#ffffff00');pc.fillStyle=fade;pc.fillRect(0,0,48,48);pc.restore();q.drawImage(patch,508,859,24,34);}photos[kind]=v;const z=document.createElement('canvas');z.width=300;z.height=400;const zc=z.getContext('2d');zc.drawImage(A.extra.bagDetail,0,0,300,400);zc.drawImage(A.extra.charm,87,50,126,189);details[kind]=z.toDataURL();q.drawImage(A.extra.charm,...r);}photos.details=details;photos.urls={};await Promise.all(['mom','dad','family'].map(kind=>new Promise(resolve=>photos[kind].toBlob(blob=>{photos.urls[kind]=URL.createObjectURL(blob);resolve();},'image/webp',.92))));
 
+}
+// Same sprite metadata, scale, positions and faces as the live shutter frame.
+function refreshFamilyPhoto(captured=null){
+ const g=Story.initial(A);g.queue=[];g.flags={family:true,familyPortrait:true};
+ if(captured)g.actors=structuredClone(captured);
+ else for(const[id,p]of Object.entries(FAMILY)){Object.assign(g.actors[id],{x:p[0],y:p[1],face:'down',moving:false});g.actors[id].gait.mode='idle';}
+ const room=document.createElement('canvas');room.width=1920;room.height=1080;scene(room.getContext('2d'),A,g);
+ const photo=document.createElement('canvas');photo.width=1600;photo.height=1200;photo.getContext('2d').drawImage(room,...FAMILY_CROP,0,0,1600,1200);photos.family=photo;familyCaptureKey=captured||null;
 }
 function record(event,data={}){if(['pause','unpause','shutter','paper-impact'].includes(event))console.info(event,JSON.stringify({t:G?.t,chapter:G?.chapter,...data}));if(audit.length>1200)audit.splice(0,audit.length-1200);audit.push({time:Date.now(),t:+(G?.t||0).toFixed(3),chapter:G?.chapter,event,...data});}
 addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(['arrowup','arrowdown','arrowleft','arrowright',' '].includes(k))e.preventDefault();if(k==='escape'){e.preventDefault();if($('#menu').open)close();else menu();return;}if(paused||watching)return;if(!e.repeat)record('keydown',{key:k,repeat:false,trusted:e.isTrusted});if(G.inspect){e.preventDefault();soundStart();photoUI.key(k);return;}if(e.repeat)return;if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d'].includes(k))autoTarget=null;keys.add(k);soundStart();if(['e',' ','enter'].includes(k))doAct();});
@@ -71,7 +80,7 @@ function startWatch(){watching=true;director=createDirector();soundStart();fresh
 $('#menuBtn').disabled=true;$('#actBtn').disabled=true;$('#menuBtn').onclick=menu;$('#closeMenu').onclick=close;$('#continue').onclick=()=>{watching=false;soundStart();if(restore())close();};$('#new').onclick=()=>{watching=false;soundStart();fresh();close();};$('#sound').onclick=()=>{soundStart();muted=!muted;localStorage.setItem('danyeo:muted',muted?'1':'0');setText($('#sound'),muted?'소리 꺼짐':'소리 켜짐');};
 $('#menu').addEventListener('cancel',e=>{e.preventDefault();close();});$('#exportLog').onclick=()=>{save(true);$('#audit').value=localStorage.getItem(AUDIT)||'';};
 try{
- const bootStart=performance.now();A=await loadAssets({onProgress:(n,total)=>{setText($('#loading'),`사진을 준비하는 중… ${Math.round(n/total*100)}%`);}});A.BLOCKED=BLOCKED;ZR=createRenderer(c,A,{zoom:1.1});ZR.R.dev=false;ZR.R.tags=false;ZR.R.domDialogue=true;await makePhotos();G=Story.initial(A);photoUI=createPhotoUI({getG:()=>G,photos,charm:A.extra.charm,act:e=>Story.photoAction(G,e,A),record,sound:photoSound});Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.a.gd.pose=null;ZR.snapCamera(Z);$('#menuBtn').disabled=false;$('#loading').hidden=true;$('#loading').style.display='none';$('#developer').hidden=!dev;setText($('#sound'),muted?'소리 꺼짐':'소리 켜짐');if(!dev)menu();console.info('game-ready',JSON.stringify({milliseconds:Math.round(performance.now()-bootStart),build:'performance-v16'}));
+ const bootStart=performance.now();A=await loadAssets({onProgress:(n,total)=>{setText($('#loading'),`사진을 준비하는 중… ${Math.round(n/total*100)}%`);}});A.BLOCKED=BLOCKED;ZR=createRenderer(c,A,{zoom:1.1});ZR.R.dev=false;ZR.R.tags=false;ZR.R.domDialogue=true;await makePhotos();await document.fonts.load('700 22px "Danyeo Memory"');G=Story.initial(A);photoUI=createPhotoUI({getG:()=>G,photos,charm:A.extra.charm,act:e=>Story.photoAction(G,e,A),record,sound:photoSound});Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.a.gd.pose=null;ZR.snapCamera(Z);$('#menuBtn').disabled=false;$('#loading').hidden=true;$('#loading').style.display='none';$('#developer').hidden=!dev;setText($('#sound'),muted?'소리 꺼짐':'소리 켜짐');if(!dev)menu();console.info('game-ready',JSON.stringify({milliseconds:Math.round(performance.now()-bootStart),build:'family-typography-v17'}));
  if(dev){
   const bar=document.createElement('p');$('#developer').prepend(bar);
   const add=(label,fn)=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>{keys.clear();fn();};bar.append(b);};
@@ -83,6 +92,8 @@ try{
   add('다음 행동 자세',()=>{if(G.action){G.t+=.4;if(G.action.kind==='pickup')G.flags.laneClear=G.t-G.action.at>=1.1;}});
   add('삼각대 설치 흐름 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='shelf';Object.assign(G.actors.ej,{x:1040,y:960});paused=false;started=true;});
   add('아빠 카메라 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='camera';G.actors.dad.path=World.route('home',G.actors.dad,[1040,945]);paused=false;started=true;});
+  for(const seconds of [3,1.8,1.45,.05])add('촬영 크기 비교 '+seconds,()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='countdown';G.flags.cameraPlaced=true;G.timer=seconds;for(const[id,p]of Object.entries(FAMILY)){Object.assign(G.actors[id],{x:p[0],y:p[1],face:'down',moving:false,path:null});G.actors[id].gait.mode='idle';}paused=true;started=true;});
+  add('최종 사진 앨범 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.ended=true;G.chapter='ending';refreshFamilyPhoto();paused=true;started=true;});
   add('가족사진 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='timer';G.flags.cameraPlaced=true;Object.assign(G.actors.mom,{x:FAMILY.mom[0],y:FAMILY.mom[1]});Object.assign(G.actors.dad,{x:1570,y:840});Object.assign(G.actors.ej,{x:1450,y:840});paused=false;started=true;});
   add('왼쪽 하강 멈춤 재현',()=>{G=Story.initial(A);G.chapter='mom';Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.talk=[];Z.card=null;Object.assign(Z.seek,{stage:'seek',friendAt:'B',momMode:'follow',canAsk:true});Object.assign(Z.a.fr,{x:STAIRS.B.hide[0],y:STAIRS.B.hide[1]});Object.assign(Z.a.ej,{x:STAIRS.B.x,y:730});Z.a.gd.pose=null;paused=false;started=true;ZR.snapCamera(Z);});
   add('계단 단서 검수',()=>{G=Story.initial(A);G.chapter='mom';Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.talk=[];Z.card=null;Z.seek.stage='seek';Z.seek.friendAt='A';Object.assign(Z.a.fr,{x:STAIRS.A.hide[0],y:STAIRS.A.hide[1],face:STAIRS.A.side>0?'left':'right',pose:'fr_hide'});Object.assign(Z.a.ej,{x:900,y:860});ZR.R.zoom=2;ZR.R.camLock=[1000,650];paused=true;started=true;});
@@ -97,6 +108,7 @@ try{
  let prev=performance.now(),accumulator=0;const perfSamples=[];let perfAt=prev;const perfMode=new URLSearchParams(location.search).has('perf');
  function frame(now){requestAnimationFrame(frame);if(document.hidden){prev=now;accumulator=0;return;}if(now-prev<1000/60-1)return;const workStart=performance.now(),dt=Math.min(.1,(now-prev)/1000);prev=now;const input={dx:+(keys.has('d')||keys.has('arrowright'))- +(keys.has('a')||keys.has('arrowleft')),dy:+(keys.has('s')||keys.has('arrowdown'))- +(keys.has('w')||keys.has('arrowup'))};
   if(!paused){accumulator=Math.min(.1,accumulator+dt);while(accumulator>=1/60){const simDt=1/60;accumulator-=simDt;if(watching)director(G,Z,A,simDt,doAct);if(autoTarget&&G.chapter!=='mom'&&!G.queue.length&&Story.nearby(G)?.id===autoTarget){autoTarget=null;doAct();}if(G.chapter==='mom'){G.t+=simDt;step(Z,input,simDt);if(Z.ended){Z.card=null;for(const id of ['ej','ym','fr','ss'])Z.a[id].face='down';}}else Story.tick(G,A,input,simDt);}save();}else accumulator=0;
+  if(G.shot?.kind==='family'&&(G.flags.familyCapture||null)!==familyCaptureKey)refreshFamilyPhoto(G.flags.familyCapture);
   if(G.chapter==='mom'){if(!dev)ZR.R.camLock=Z.shutterAt!=null?[1570,1450]:null;ZR.draw(Z,paused?0:dt);if(Z.shutterAt!=null){photoDissolve(c,photos.mom,Z.t-Z.shutterAt);if(Z.ended&&!watching)text(c,'E · 사진을 바라본다',790,1000,30);}}else{scene(c,A,G);ui(c,A,G,photos);}
   // Fade the same photograph into the actual space after a deliberate reach.
   const departureAge=G.t-(G.flags.departureTime??-99);if(departureAge<1.6&&G.chapter!=='mom'){c.save();c.globalAlpha=1-departureAge/1.6;drawPhoto(c,photos[G.flags.departurePhoto],0,0,1920,1080);c.restore();}

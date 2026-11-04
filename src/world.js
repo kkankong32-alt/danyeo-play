@@ -1,7 +1,7 @@
 // Spatial gameplay outside the preserved 1993 courtyard. Coordinates are foot anchors.
-import {pickFace} from '../zone/facing.js?v=16';
-import {makeGait,gaitWalk,gaitRelease,strideOf} from '../zone/gait.js?v=16';
-export const SCENE_SCALE={home:1.7,alley:1.575};
+import {pickFace} from '../zone/facing.js?v=17';
+import {makeGait,gaitWalk,gaitRelease,strideOf} from '../zone/gait.js?v=17';
+export const SCENE_SCALE={home:2.05,alley:1.575};
 export const H={ej:154,yd:153,mom:225,dad:240,gd:220};
 export const POINTS={box:[420,850],mom:[810,600],dad:[1290,630],shelf:[1700,740],stool:[240,720],middle:[1040,760],album:[490,850],door:[1210,545],rough:[420,680],smooth:[1210,720],repair:[420,780],edge:[1290,770],center:[1210,830],photo:[1130,690]};
 export const rects={home:[[100,370,540,470],[610,290,1305,495],[145,600,575,800],[1530,600,1895,800],[25,740,180,830]],alley:[[100,0,1815,505]]};

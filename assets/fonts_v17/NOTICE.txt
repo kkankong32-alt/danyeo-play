@@ -1,0 +1,4 @@
+Danyeo Memory Bold is a renamed, subset WOFF derivative of Nanum Myeongjo Bold.
+Copyright (c) 2010 NHN Corporation. Licensed under SIL OFL 1.1; see OFL.txt.
+Source: https://github.com/google/fonts/tree/main/ofl/nanummyeongjo
+Source SHA256: bc9ed8e60d93fe6db054b8fb988481b625f2eef8cb2317ad0e9834681b8fe3f3

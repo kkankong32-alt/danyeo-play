@@ -1,5 +1,5 @@
 // 인물 그림 적용 설정 — 월드 축척(zone.js PX_PER_M)과 분리. 실제 배경을 넣을 때 여기 값만 다시 검토한다.
-import { HEIGHT } from './zone.js?v=16';
+import { HEIGHT } from './zone.js?v=17';
 export const ART = {
   ej: {
     sheet: 'ej_A_walk_9x4_v05_game',      // assets/sheets/<id>.json (원본: art/inbox/20261102_은재_A_4방향_v05/)

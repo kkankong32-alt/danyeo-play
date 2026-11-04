@@ -1,13 +1,13 @@
-import {pickFace} from './facing.js?v=16';
+import {pickFace} from './facing.js?v=17';
 // 구역 시뮬레이션 — 입력 → 이동(층·계단 포함) → 위치 판정 → 이야기 진행. DOM 없음(브라우저·Node 공용).
 // 그리기는 render.js가 이 상태를 읽기만 한다. 순간이동 없이 모든 인물이 실제로 걸어서 움직인다.
-import { STAIRS, FLOOR2, STAIR_ENTER_Y, STAIR_LEN, SPOT, LOOKS, PX_PER_M, free, stairAt, other } from './zone.js?v=16';
-import { route } from './nav.js?v=16';
-import { HEIGHT } from './zone.js?v=16';
-import './art_config.js?v=16';
-import { makeGait, strideOf, gaitWalk, gaitRelease } from './gait.js?v=16';
-import * as Seek from './seek.js?v=16';
-import { L, LOOK_LINES } from './story.js?v=16';
+import { STAIRS, FLOOR2, STAIR_ENTER_Y, STAIR_LEN, SPOT, LOOKS, PX_PER_M, free, stairAt, other } from './zone.js?v=17';
+import { route } from './nav.js?v=17';
+import { HEIGHT } from './zone.js?v=17';
+import './art_config.js?v=17';
+import { makeGait, strideOf, gaitWalk, gaitRelease } from './gait.js?v=17';
+import * as Seek from './seek.js?v=17';
+import { L, LOOK_LINES } from './story.js?v=17';
 
 // 속도 = 실제 m/s × 축척. 초1 걷기 약 1.15m/s(초당 약 2.4걸음), 친구 달리기 2.8m/s
 export const SPEED = { ej: 1.15 * PX_PER_M, ym: 1.12 * PX_PER_M, fr: 2.8 * PX_PER_M, ss: 1.05 * PX_PER_M, gd: 0.85 * PX_PER_M, climb: 0.82 };
@@ -69,7 +69,7 @@ export function moveActor(a, vx, vy, dt, speed = a.speed) {
 
 // 네 방향 그림 선택(대각선 흔들림 방지): 한 축이 다른 축의 1.25배를 넘을 때만 그 축으로 바꾸고,
 // 거의 대각선이면 지금 방향이 두 성분 중 하나일 때 유지(아니면 좌우 우선). 실제로 움직인 축을 우선해 벽에 막힌 축을 보지 않는다.
-export {pickFace} from './facing.js?v=16';
+export {pickFace} from './facing.js?v=17';
 // 목표까지 경로(legs)를 따라가는 방향 계산 → moveActor 재사용(NPC도 플레이어와 같은 규칙으로 걷는다)
 export function goTo(a, goal) { a.goal = goal; a.legs = route(a, goal); a.arrived = !a.legs; if (a.legs) a.pose = null; return !!a.legs; }
 function legDir(a, dt) {

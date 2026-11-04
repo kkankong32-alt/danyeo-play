@@ -12,7 +12,7 @@ export const image=src=>{const key=canonical(src);if(imageCache.has(key))return 
 export const json=src=>{if(!jsonCache.has(src))jsonCache.set(src,(async()=>{const r=await fetch(src);if(!r.ok)throw Error(src);return r.json();})());return jsonCache.get(src);};
 export async function loadAssets({raw=false,onProgress=()=>{}}={}){
  progress=onProgress;
- if(!raw){const manifest=await json('assets/performance_v16/manifest.json');packed=manifest.images;total=Object.keys(packed).length;
+ if(!raw){const manifest=await json('assets/family_v17/manifest.json');packed=manifest.images;total=Object.keys(packed).length;
  // Start independent requests together; cap concurrent image decodes to avoid memory spikes.
  for(const path of manifest.json)json(path).catch(()=>{});
  for(const path of Object.keys(packed))image(path).catch(()=>{});
@@ -33,7 +33,6 @@ export async function loadAssets({raw=false,onProgress=()=>{}}={}){
  A.poses.gd_seated=await image('assets/gd_stand.png');
  A.extra.ejPhoto=await image('assets/runtime/ej_stand.png');
  A.walk.gd=await json('assets/sprites_v14/gd_walk.json');A.walkImg.gd=await image('assets/sprites_v14/'+A.walk.gd.image);
- A.extra.familyPose=trim(await image('assets/sprites_v14/family_smile.png'));
  A.extra.photographerViews=normalize(await image('assets/spatial_v09/photographers.png'),4,2);const rear=document.createElement('canvas');rear.width=360;rear.height=480;rear.getContext('2d').drawImage(A.extra.photographerViews,1080,0,360,480,0,0,360,480);A.poses.gd_camera=rear;
  A.extra.grandfather=normalize(await image('assets/actions_v11/grandfather.png'),3,3);
  A.extra.dadCarry=normalize(await image('assets/actions_v11/dad_camera.png'),8,2);

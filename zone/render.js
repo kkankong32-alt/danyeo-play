@@ -1,9 +1,9 @@
 // 회색 상자 그리기. 시뮬레이션 상태를 읽기만 한다.
 // 레이어 순서: 바닥·건물 → 2층 인물 → 2층 난간·1층 천장(계단 통로는 뚫림) → [정렬: 소품·인물·신발(발 y 기준)] → 나무 잎 → 앞 담장 → 말풍선·안내.
-import { WORLD, VIEW, HEIGHT, STAIRS, FLOOR2, PROPS, PARAPET, OVERHANG, CANOPY, FRONT_WALL, LOOKS, PX_PER_M, ARCH } from './zone.js?v=16';
-import { NAME, objective } from './story.js?v=16';
-import { interactable } from './sim.js?v=16';
-import { gaitColumn, gaitIndex } from './gait.js?v=16';
+import { WORLD, VIEW, HEIGHT, STAIRS, FLOOR2, PROPS, PARAPET, OVERHANG, CANOPY, FRONT_WALL, LOOKS, PX_PER_M, ARCH } from './zone.js?v=17';
+import { NAME, objective } from './story.js?v=17';
+import { interactable } from './sim.js?v=17';
+import { gaitColumn, gaitIndex } from './gait.js?v=17';
 
 // Cropped layers retain original world/source coordinates without empty GPU textures.
 export function drawLayerImage(ctx,im,sx,sy,sw,sh,dx,dy,dw,dh){
