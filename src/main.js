@@ -1,17 +1,17 @@
-import {FAMILY,FAMILY_CROP} from './family.js?v=17';
-import {photoDissolve,SHOT_SECONDS} from './cinema.js?v=17';
-import {createDirector} from './director.js?v=17';
-import {createMusic} from './music.js?v=17';
-import {openInvestigation} from './investigation.js?v=17';
-import {createPhotoUI} from './photo-ui.js?v=17';
-import {loadAssets} from './assets.js?v=17';
-import * as Story from './story.js?v=17';
-import * as World from './world.js?v=17';
-import {scene,ui,text,drawPhoto} from './render.js?v=17';
-import {createSim,step,act,clickTo,interactable,goTo} from '../zone/sim.js?v=17';
-import {createRenderer} from '../zone/render.js?v=17';
-import {BLOCKED,HEIGHT,SPOT,VIEW,STAIRS} from '../zone/zone.js?v=17';
-import {NAME,objective as zoneObjective} from '../zone/story.js?v=17';
+import {FAMILY,FAMILY_CROP} from './family.js?v=18';
+import {photoDissolve,SHOT_SECONDS} from './cinema.js?v=18';
+import {createDirector} from './director.js?v=18';
+import {createMusic} from './music.js?v=18';
+import {openInvestigation} from './investigation.js?v=18';
+import {createPhotoUI} from './photo-ui.js?v=18';
+import {loadAssets} from './assets.js?v=18';
+import * as Story from './story.js?v=18';
+import * as World from './world.js?v=18';
+import {scene,ui,text,drawPhoto} from './render.js?v=18';
+import {createSim,step,act,clickTo,interactable,goTo} from '../zone/sim.js?v=18';
+import {createRenderer} from '../zone/render.js?v=18';
+import {BLOCKED,HEIGHT,SPOT,VIEW,STAIRS} from '../zone/zone.js?v=18';
+import {NAME,objective as zoneObjective} from '../zone/story.js?v=18';
 const domNodes=new Map();
 const cv=document.querySelector('#view'),c=cv.getContext('2d'),$=s=>domNodes.get(s)||(domNodes.set(s,document.querySelector(s)),domNodes.get(s)),dev=new URLSearchParams(location.search).get('dev')==='1';
 const KEY='danyeo:full-v005:save-complete4',AUDIT='danyeo:full-v005:audit-complete4';
@@ -80,7 +80,7 @@ function startWatch(){watching=true;director=createDirector();soundStart();fresh
 $('#menuBtn').disabled=true;$('#actBtn').disabled=true;$('#menuBtn').onclick=menu;$('#closeMenu').onclick=close;$('#continue').onclick=()=>{watching=false;soundStart();if(restore())close();};$('#new').onclick=()=>{watching=false;soundStart();fresh();close();};$('#sound').onclick=()=>{soundStart();muted=!muted;localStorage.setItem('danyeo:muted',muted?'1':'0');setText($('#sound'),muted?'소리 꺼짐':'소리 켜짐');};
 $('#menu').addEventListener('cancel',e=>{e.preventDefault();close();});$('#exportLog').onclick=()=>{save(true);$('#audit').value=localStorage.getItem(AUDIT)||'';};
 try{
- const bootStart=performance.now();A=await loadAssets({onProgress:(n,total)=>{setText($('#loading'),`사진을 준비하는 중… ${Math.round(n/total*100)}%`);}});A.BLOCKED=BLOCKED;ZR=createRenderer(c,A,{zoom:1.1});ZR.R.dev=false;ZR.R.tags=false;ZR.R.domDialogue=true;await makePhotos();await document.fonts.load('700 22px "Danyeo Memory"');G=Story.initial(A);photoUI=createPhotoUI({getG:()=>G,photos,charm:A.extra.charm,act:e=>Story.photoAction(G,e,A),record,sound:photoSound});Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.a.gd.pose=null;ZR.snapCamera(Z);$('#menuBtn').disabled=false;$('#loading').hidden=true;$('#loading').style.display='none';$('#developer').hidden=!dev;setText($('#sound'),muted?'소리 꺼짐':'소리 켜짐');if(!dev)menu();console.info('game-ready',JSON.stringify({milliseconds:Math.round(performance.now()-bootStart),build:'family-typography-v17'}));
+ const bootStart=performance.now();A=await loadAssets({onProgress:(n,total)=>{setText($('#loading'),`사진을 준비하는 중… ${Math.round(n/total*100)}%`);}});A.BLOCKED=BLOCKED;ZR=createRenderer(c,A,{zoom:1.1});ZR.R.dev=false;ZR.R.tags=false;ZR.R.domDialogue=true;await makePhotos();await document.fonts.load('700 22px "Danyeo Memory"');G=Story.initial(A);photoUI=createPhotoUI({getG:()=>G,photos,charm:A.extra.charm,act:e=>Story.photoAction(G,e,A),record,sound:photoSound});Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.a.gd.pose=null;ZR.snapCamera(Z);$('#menuBtn').disabled=false;$('#loading').hidden=true;$('#loading').style.display='none';$('#developer').hidden=!dev;setText($('#sound'),muted?'소리 꺼짐':'소리 켜짐');if(!dev)menu();console.info('game-ready',JSON.stringify({milliseconds:Math.round(performance.now()-bootStart),build:'family-front-v18'}));
  if(dev){
   const bar=document.createElement('p');$('#developer').prepend(bar);
   const add=(label,fn)=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>{keys.clear();fn();};bar.append(b);};
@@ -93,6 +93,7 @@ try{
   add('삼각대 설치 흐름 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='shelf';Object.assign(G.actors.ej,{x:1040,y:960});paused=false;started=true;});
   add('아빠 카메라 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='camera';G.actors.dad.path=World.route('home',G.actors.dad,[1040,945]);paused=false;started=true;});
   for(const seconds of [3,1.8,1.45,.05])add('촬영 크기 비교 '+seconds,()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='countdown';G.flags.cameraPlaced=true;G.timer=seconds;for(const[id,p]of Object.entries(FAMILY)){Object.assign(G.actors[id],{x:p[0],y:p[1],face:'down',moving:false,path:null});G.actors[id].gait.mode='idle';}paused=true;started=true;});
+  add('가족사진 앞뒤 순서 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='countdown';G.timer=.05;for(const[id,p]of Object.entries(FAMILY)){Object.assign(G.actors[id],{x:p[0],y:id==='ej'?755:p[1],face:'down',moving:false,path:null});G.actors[id].gait.mode='idle';}G.flags.familyCapture=structuredClone(G.actors);refreshFamilyPhoto(G.flags.familyCapture);G.shot={kind:'family',at:G.t-3};paused=true;started=true;});
   add('최종 사진 앨범 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.ended=true;G.chapter='ending';refreshFamilyPhoto();paused=true;started=true;});
   add('가족사진 검수',()=>{G=Story.initial(A);Story.enter(G,'final',A);G.queue=[];G.phase='timer';G.flags.cameraPlaced=true;Object.assign(G.actors.mom,{x:FAMILY.mom[0],y:FAMILY.mom[1]});Object.assign(G.actors.dad,{x:1570,y:840});Object.assign(G.actors.ej,{x:1450,y:840});paused=false;started=true;});
   add('왼쪽 하강 멈춤 재현',()=>{G=Story.initial(A);G.chapter='mom';Z=createSim({ejMeta:A.walk.ej,npcMeta:A.walk});Z.talk=[];Z.card=null;Object.assign(Z.seek,{stage:'seek',friendAt:'B',momMode:'follow',canAsk:true});Object.assign(Z.a.fr,{x:STAIRS.B.hide[0],y:STAIRS.B.hide[1]});Object.assign(Z.a.ej,{x:STAIRS.B.x,y:730});Z.a.gd.pose=null;paused=false;started=true;ZR.snapCamera(Z);});

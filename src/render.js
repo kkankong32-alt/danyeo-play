@@ -1,8 +1,8 @@
-import {FAMILY,familyPoseMix,familyLean} from './family.js?v=17';
-import {handAnchor} from './cinema.js?v=17';
-import {H,SCENE_SCALE} from './world.js?v=17';
-import {gaitColumn} from '../zone/gait.js?v=17';
-import {objects,nearby,objective,NAMES,CHAPTER} from './story.js?v=17';
+import {FAMILY,familyPoseMix,familyLean,familyReady} from './family.js?v=18';
+import {handAnchor} from './cinema.js?v=18';
+import {H,SCENE_SCALE} from './world.js?v=18';
+import {gaitColumn} from '../zone/gait.js?v=18';
+import {objects,nearby,objective,NAMES,CHAPTER} from './story.js?v=18';
 const FONT='"Danyeo Memory","Batang",serif';
 // Trace actual furniture silhouettes in the 1536x1024 source. Never repaint floor rectangles.
 const FURNITURE=[{foot:800,shapes:[[[139,608],[154,587],[154,489],[229,466],[290,486],[298,544],[389,547],[437,583],[453,616],[442,649],[151,688],[139,661]],[[145,658],[168,660],[168,755],[145,755]],[[198,676],[219,675],[219,732],[198,739]],[[407,651],[431,645],[431,713],[409,720]]]},{foot:800,shapes:[[[1227,533],[1505,529],[1520,548],[1518,570],[1512,570],[1512,753],[1494,758],[1494,738],[1251,738],[1251,754],[1231,754],[1231,570],[1227,570]]]}];
@@ -26,7 +26,9 @@ function dadCamera(c,A,a){if(a.face==='up'){sprite(c,A,a,SCENE_SCALE.home);retur
 function pickup(c,A,a,age){const col=age<.25?0:age<.65?1:age<1.1?2:age<1.5?3:age<2?4:5,sc=H.ej*SCENE_SCALE.alley/420;c.drawImage(A.extra.pickup,col%3*360,Math.floor(col/3)*480,360,480,a.x-180*sc,a.y-450*sc,360*sc,480*sc);}
 
 export function scene(c,A,G){c.setTransform(1,0,0,1,0,0);const im=A.extra[G.scene];if(G.scene==='alley')c.drawImage(im,0,-80,1920,1280);else c.drawImage(im,0,0,1920,1080);
- const actors=Object.values(G.actors).sort((a,b)=>a.y-b.y),embrace=G.scene==='home'?familyPoseMix(G):0;
+ // Photo composition: the child stays in front even when arrival tolerance leaves a parent slightly nearer.
+ const portrait=G.scene==='home'&&(G.flags.familyPortrait||G.shot?.kind==='family'||G.phase==='countdown'&&familyReady(G));
+ const actors=Object.values(G.actors).sort((a,b)=>portrait&&(a.id==='ej')!==(b.id==='ej')?(a.id==='ej'?1:-1):a.y-b.y),embrace=G.scene==='home'?familyPoseMix(G):0;
  if(G.scene==='alley'){
   const smooth=G.flags.surface==='smooth'||['aim','cleanup','photo','posing','shutterWait'].includes(G.phase),x=smooth?1210:420,y=smooth?720:680;
   if(!G.carry){const t=G.t-(G.flags.flipAt??-100),flip=t>=0&&G.flags.flipAt!=null;const hit=G.t-(G.flags.hitAt??-100);

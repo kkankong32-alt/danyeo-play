@@ -1,5 +1,5 @@
 // 길찾기: 바닥은 16px 격자 A*(8방향, 모서리 끼어들기 금지) + 시야가 트인 점만 남김. 층이 다르면 계단을 거친다.
-import { free, STAIRS, FLOOR2, STAIR_ENTER_Y } from './zone.js?v=17';
+import { free, STAIRS, FLOOR2, STAIR_ENTER_Y } from './zone.js?v=18';
 
 const grids=new Map();
 function pushHeap(h,v){let i=h.length;h.push(v);while(i){const p=(i-1)>>1;if(h[p][0]<=v[0])break;h[i]=h[p];i=p;}h[i]=v;}

@@ -1,7 +1,7 @@
-import {FAMILY,familyReady} from './family.js?v=17';
-import {SHOT_SECONDS} from './cinema.js?v=17';
-import {openInvestigation,investigate} from './investigation.js?v=17';
-import {actor,POINTS as P,walk,route} from './world.js?v=17';
+import {FAMILY,familyReady} from './family.js?v=18';
+import {SHOT_SECONDS} from './cinema.js?v=18';
+import {openInvestigation,investigate} from './investigation.js?v=18';
+import {actor,POINTS as P,walk,route} from './world.js?v=18';
 export const NAMES={ej:'은재',mom:'엄마',dad:'아빠',yd:'어린 아빠',voice:'할아버지'};
 export const CHAPTER={prologue:'2026 · 사진 상자',mom:'1993 · 다대포의 마당',bridge:'2026 · 두 번째 사진',dad:'1991 · 양산의 골목',final:'2026 · 돌아온 집',ending:'우리의 다음 장'};
 export function initial(A){return {version:1,chapter:'prologue',phase:'box',scene:'home',t:0,queue:[['mom','은재야, 사진 상자 좀 같이 정리할까?']],after:null,actors:{ej:actor('ej',1040,900,A.walk.ej,'up'),mom:actor('mom',...P.mom,A.walk.mom),dad:actor('dad',...P.dad,A.walk.dad)},flags:{},events:[],failed:0,carry:false,timer:null,hold:0,holding:false,photos:[],ended:false};}

@@ -1,7 +1,7 @@
 // 숨바꼭질 규칙 — 위치로만 판정하는 순수 함수(화면·입력 없음). sim.js와 Node 테스트가 함께 쓴다.
 // 두 계단(A·B)은 2층 복도로 이어져 있다. 혼자 다가가면 친구는 위로 올라가 반대쪽으로 도망친다.
 // 반대쪽 계단 앞에 어린 엄마가 "도착해서" 지키고 있으면, 친구는 2층 복도에서 갈 곳을 잃는다.
-import { other } from './zone.js?v=17';
+import { other } from './zone.js?v=18';
 
 export function initial() {
   return { stage: 'arrive', friendAt: 'A', friendMode: 'hidden', flees: 0, guardAt: null, posted: false, momMode: 'count',

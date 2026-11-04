@@ -1,4 +1,4 @@
-import { TRIAL, LAYERS } from './trial_layout.js?v=17';
+import { TRIAL, LAYERS } from './trial_layout.js?v=18';
 // 1993 다대포 아파트 앞마당 — 회색 상자 공간 데이터 + 기하 판정. 브라우저·Node 테스트 공용(DOM 없음).
 // 투영: 100TF와 같은 방식 — 바닥은 위에서 내려다본 평면(plan x,y), 세워진 것(건물·인물·소품)은 정면 3/4 그림.
 // 인물·소품 크기는 화면 위치와 관계없이 일정(원근 축소 없음). 높이 z는 화면에서 위로 올리는 값: 화면 y = plan y − z.
