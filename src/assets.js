@@ -1,8 +1,22 @@
 export const POLISH='assets/runtime/polish/';
 export const PROD='assets/runtime/production/';
-export const image=src=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(Error('이미지를 읽지 못했습니다: '+src));im.src=src;});
-export const json=async src=>{const r=await fetch(src);if(!r.ok)throw Error(src);return r.json();};
-export async function loadAssets(){
+let packed={},progress=()=>{},done=0,total=0;
+const imageCache=new Map(),jsonCache=new Map(),queue=[];let running=0;
+const canonical=src=>new URL(src,'https://game.invalid/').pathname.slice(1);
+function pump(){while(running<6&&queue.length){running++;const job=queue.shift();job().finally(()=>{running--;pump();});}}
+export const image=src=>{const key=canonical(src);if(imageCache.has(key))return imageCache.get(key);const item=packed[key];
+ const promise=new Promise((resolve,reject)=>{queue.push(()=>new Promise(finish=>{const im=new Image();im.decoding='async';
+ im.onload=()=>{im.packOffset=item?.offset||[0,0];done++;progress(done,total);resolve(im);finish();};
+ im.onerror=()=>{reject(Error('이미지를 읽지 못했습니다: '+src));finish();};im.src=item?.url||src;}));pump();});
+ imageCache.set(key,promise);return promise;};
+export const json=src=>{if(!jsonCache.has(src))jsonCache.set(src,(async()=>{const r=await fetch(src);if(!r.ok)throw Error(src);return r.json();})());return jsonCache.get(src);};
+export async function loadAssets({raw=false,onProgress=()=>{}}={}){
+ progress=onProgress;
+ if(!raw){const manifest=await json('assets/performance_v16/manifest.json');packed=manifest.images;total=Object.keys(packed).length;
+ // Start independent requests together; cap concurrent image decodes to avoid memory spikes.
+ for(const path of manifest.json)json(path).catch(()=>{});
+ for(const path of Object.keys(packed))image(path).catch(()=>{});
+ }
  const A={walk:{},walkImg:{},poses:{},layerImages:{},extra:{}};
  const dir=POLISH+'preview/assets/sheets/';const idx={walk:{ej:'ej_A_walk_9x4_v05_game.json'},poses:{}};
  for(const [id,f] of Object.entries(idx.walk)){const m=await json(dir+(id==='ej'?'ej_A_walk_9x4_v05_game.json':f));A.walk[id]=m;A.walkImg[id]=await image(dir+m.image);}
@@ -12,9 +26,9 @@ export async function loadAssets(){
  for(const d of ['left','right'])A.poses[d==='left'?'ss_point_left':'ss_point']=await image(POLISH+'characters/ss/ss_point_'+d+'_v01.png');
  A.frRun=await image(PROD+'characters/fr/fr_run_v01.png');A.shoes=await Promise.all(['left','right'].map(d=>image(PROD+'characters/fr/shoe_clue_'+d+'_v01.png')));
  A.scene=await json(POLISH+'config/layers_v02.json');
- for(const l of [{id:'base',path:A.scene.base},...A.scene.layers])A.layerImages[l.id]=await image(POLISH+l.path);
+ for(const l of [{id:'base',path:A.scene.base},...A.scene.layers]){if(['L3_flowers_v01','L5_front_v01','stair_A_return_v01','stair_B_return_v01'].includes(l.id))continue;A.layerImages[l.id]=await image(POLISH+l.path);}
  const env=await json('assets/revision_v02/environment.json');Object.assign(A.scene.layers.find(l=>l.id==='L3_flowers_v01'),env.flowers);A.layerImages.L3_flowers_v01=await image('assets/revision_v02/flowers.png');A.layerImages.L5_front_v01=await image('assets/revision_v02/front_gate.png');
- for(const id of ['yd','mom','dad','gd']){A.walk[id]=await json('assets/'+id+'.json');A.walkImg[id]=await image('assets/'+A.walk[id].image);}
+ for(const id of ['yd','mom']){A.walk[id]=await json('assets/'+id+'.json');A.walkImg[id]=await image('assets/'+A.walk[id].image);}
  A.walk.dad=await json('assets/revision_v02/dad.json');A.walkImg.dad=await image('assets/revision_v02/dad.png');
  A.poses.gd_seated=await image('assets/gd_stand.png');
  A.extra.ejPhoto=await image('assets/runtime/ej_stand.png');

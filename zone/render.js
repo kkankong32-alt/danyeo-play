@@ -1,9 +1,16 @@
 // 회색 상자 그리기. 시뮬레이션 상태를 읽기만 한다.
 // 레이어 순서: 바닥·건물 → 2층 인물 → 2층 난간·1층 천장(계단 통로는 뚫림) → [정렬: 소품·인물·신발(발 y 기준)] → 나무 잎 → 앞 담장 → 말풍선·안내.
-import { WORLD, VIEW, HEIGHT, STAIRS, FLOOR2, PROPS, PARAPET, OVERHANG, CANOPY, FRONT_WALL, LOOKS, PX_PER_M, ARCH } from './zone.js';
-import { NAME, objective } from './story.js';
-import { interactable } from './sim.js';
-import { gaitColumn, gaitIndex } from './gait.js';
+import { WORLD, VIEW, HEIGHT, STAIRS, FLOOR2, PROPS, PARAPET, OVERHANG, CANOPY, FRONT_WALL, LOOKS, PX_PER_M, ARCH } from './zone.js?v=16';
+import { NAME, objective } from './story.js?v=16';
+import { interactable } from './sim.js?v=16';
+import { gaitColumn, gaitIndex } from './gait.js?v=16';
+
+// Cropped layers retain original world/source coordinates without empty GPU textures.
+export function drawLayerImage(ctx,im,sx,sy,sw,sh,dx,dy,dw,dh){
+ const [ox,oy]=im.packOffset||[0,0],l=Math.max(sx,ox),t=Math.max(sy,oy),r=Math.min(sx+sw,ox+im.width),b=Math.min(sy+sh,oy+im.height);
+ if(r<=l||b<=t)return;
+ ctx.drawImage(im,l-ox,t-oy,r-l,b-t,dx+(l-sx)*dw/sw,dy+(t-sy)*dh/sh,(r-l)*dw/sw,(b-t)*dh/sh);
+}
 
 export const FOOTLOCK_DEFAULT = 0.5;   // 0 = 몸 이동 매끈(발 약간 미끄러짐), 1 = 디딘 발 고정(몸이 프레임마다 끊겨 이동)
 const FONT = '"Noto Sans KR","Malgun Gothic","WenQuanYi Zen Hei",sans-serif';
@@ -42,8 +49,8 @@ export function createRenderer(ctx, assets, opts = {}) {
 
   // ---- 바닥·건물(회색 상자) ----
   const layerBounds=Object.fromEntries(assets.scene.layers.map(l=>[l.id,l.bounds||[0,-260,3200,1804]]));
-  const layer = id => {if(id==='stair_A_return_v01'||id==='stair_B_return_v01'){const a=id.includes('_A_'),src=a?'stair_A_connected_v01':'stair_B_connected_v01',b=a?[1018,505,1062,680]:[2138,505,2182,680];ctx.drawImage(assets.layerImages[src],b[0],b[1]+260,b[2]-b[0],b[3]-b[1],b[0],b[1],b[2]-b[0],b[3]-b[1]);return;} const b=layerBounds[id]||[0,-260,3200,1804],x=Math.max(b[0],R.cam.x-2),y=Math.max(b[1],R.cam.y-2),r=Math.min(b[2],R.cam.x+VW()+2),d=Math.min(b[3],R.cam.y+VH()+2);if(r>x&&d>y)ctx.drawImage(assets.layerImages[id],x,y+260,r-x,d-y,x,y,r-x,d-y); };
-  function base(){ctx.save();ctx.translate(0,3608);ctx.scale(1,-1);ctx.drawImage(assets.layerImages.base,0,1924,3200,140,0,1664,3200,140);ctx.restore();layer('base');for(const l of assets.scene.layers)if(l.kind==='behindActors')layer(l.id);}
+  const layer = id => {if(id==='stair_A_return_v01'||id==='stair_B_return_v01'){const a=id.includes('_A_'),src=a?'stair_A_connected_v01':'stair_B_connected_v01',b=a?[1018,505,1062,680]:[2138,505,2182,680];drawLayerImage(ctx,assets.layerImages[src],b[0],b[1]+260,b[2]-b[0],b[3]-b[1],b[0],b[1],b[2]-b[0],b[3]-b[1]);return;} const b=layerBounds[id]||[0,-260,3200,1804],x=Math.max(b[0],R.cam.x-2),y=Math.max(b[1],R.cam.y-2),r=Math.min(b[2],R.cam.x+VW()+2),d=Math.min(b[3],R.cam.y+VH()+2);if(r>x&&d>y)drawLayerImage(ctx,assets.layerImages[id],x,y+260,r-x,d-y,x,y,r-x,d-y); };
+  function base(){ctx.save();ctx.translate(0,3608);ctx.scale(1,-1);drawLayerImage(ctx,assets.layerImages.base,0,1924,3200,140,0,1664,3200,140);ctx.restore();layer('base');for(const l of assets.scene.layers)if(l.kind==='behindActors')layer(l.id);}
   function overlays(){for(const l of assets.scene.layers)if(l.kind==='over2f')layer(l.id);}
   function prop(p,alpha=1){ctx.save();ctx.globalAlpha=alpha;layer(p.id);ctx.restore();}
   const shade = (hex, k) => { const n = parseInt(hex.slice(1), 16); const c = [n >> 16, (n >> 8) & 255, n & 255].map(v => Math.max(0, Math.min(255, Math.round(v * k)))); return `rgb(${c.join(',')})`; };
@@ -78,7 +85,7 @@ export function createRenderer(ctx, assets, opts = {}) {
     overlays();
     const L = [];
     // Actual lower flight occludes ground actors behind it; stair actors sort in front.
-    L.push({y:645,draw:()=>{ctx.drawImage(assets.layerImages.stair_A_connected_v01,783,790,235,115,783,530,235,115);}});
+    L.push({y:645,draw:()=>{drawLayerImage(ctx,assets.layerImages.stair_A_connected_v01,783,790,235,115,783,530,235,115);}});
     L.push({y:1790,draw:()=>layer('L5_front_v01')});
     for (const p of PROPS) L.push({ y: p.foot[3], draw: () => prop(p, p.kind === 'pyeongsang' ? 1 : 1) });
     for (const a of A) if (a.lvl !== '2f') L.push({ y: a.lvl === 'st' ? 659 : a.y, a, draw: () => drawActor(S, a) });

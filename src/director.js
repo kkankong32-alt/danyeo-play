@@ -1,7 +1,7 @@
-import * as Story from './story.js';
-import {route,POINTS} from './world.js';
-import {clickTo,interactable} from '../zone/sim.js';
-import {STAIRS,SPOT,other} from '../zone/zone.js';
+import * as Story from './story.js?v=16';
+import {route,POINTS} from './world.js?v=16';
+import {clickTo,interactable} from '../zone/sim.js?v=16';
+import {STAIRS,SPOT,other} from '../zone/zone.js?v=16';
 // Runs the real movement and puzzle rules. No scene skipping or save mutation.
 export function createDirector(){let last='',age=0,repath=0;return function(G,Z,A,dt,act){
  if(G.shot||G.beat||G.action)return;

@@ -1,8 +1,8 @@
-import {FAMILY,familyPoseMix} from './family.js';
-import {handAnchor} from './cinema.js';
-import {H,SCENE_SCALE} from './world.js';
-import {gaitColumn} from '../zone/gait.js';
-import {objects,nearby,objective,NAMES,CHAPTER} from './story.js';
+import {FAMILY,familyPoseMix} from './family.js?v=16';
+import {handAnchor} from './cinema.js?v=16';
+import {H,SCENE_SCALE} from './world.js?v=16';
+import {gaitColumn} from '../zone/gait.js?v=16';
+import {objects,nearby,objective,NAMES,CHAPTER} from './story.js?v=16';
 const FONT='"Malgun Gothic",sans-serif';
 // Trace actual furniture silhouettes in the 1536x1024 source. Never repaint floor rectangles.
 const FURNITURE=[{foot:800,shapes:[[[139,608],[154,587],[154,489],[229,466],[290,486],[298,544],[389,547],[437,583],[453,616],[442,649],[151,688],[139,661]],[[145,658],[168,660],[168,755],[145,755]],[[198,676],[219,675],[219,732],[198,739]],[[407,651],[431,645],[431,713],[409,720]]]},{foot:800,shapes:[[[1227,533],[1505,529],[1520,548],[1518,570],[1512,570],[1512,753],[1494,758],[1494,738],[1251,738],[1251,754],[1231,754],[1231,570],[1227,570]]]}];

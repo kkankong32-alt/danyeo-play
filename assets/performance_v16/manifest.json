@@ -1,0 +1,935 @@
+{
+  "images": {
+    "assets/actions_v11/dad_camera.png": {
+      "url": "assets/performance_v16/9ee9a7edff98db3d.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        2172,
+        724
+      ],
+      "size": [
+        2172,
+        724
+      ],
+      "lossless": true
+    },
+    "assets/actions_v11/grandfather.png": {
+      "url": "assets/performance_v16/cb0097316d19bb2f.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1246,
+        1262
+      ],
+      "size": [
+        1246,
+        1262
+      ],
+      "lossless": true
+    },
+    "assets/actions_v11/pickup.png": {
+      "url": "assets/performance_v16/47e291b8577f2c4a.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1536,
+        1024
+      ],
+      "size": [
+        1536,
+        1024
+      ],
+      "lossless": true
+    },
+    "assets/alley_v01.png": {
+      "url": "assets/performance_v16/b271e9b5af29ce05.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1536,
+        1024
+      ],
+      "size": [
+        1536,
+        1024
+      ],
+      "lossless": false
+    },
+    "assets/cinema_v08/photographer.png": {
+      "url": "assets/performance_v16/0644338ce149442c.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        2172,
+        724
+      ],
+      "size": [
+        2172,
+        724
+      ],
+      "lossless": true
+    },
+    "assets/cinema_v08/tripod.png": {
+      "url": "assets/performance_v16/4a0ecc098df67223.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1024,
+        1536
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "lossless": true
+    },
+    "assets/complete_v04/bag_detail.png": {
+      "url": "assets/performance_v16/a50e607fc722f73e.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1086,
+        1448
+      ],
+      "size": [
+        1086,
+        1448
+      ],
+      "lossless": false
+    },
+    "assets/experience_v06/title.png": {
+      "url": "assets/performance_v16/e8b02c66f754ed95.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1672,
+        941
+      ],
+      "size": [
+        1672,
+        941
+      ],
+      "lossless": false
+    },
+    "assets/gd_stand.png": {
+      "url": "assets/performance_v16/bb1f0ed294679fc7.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/home_v01.png": {
+      "url": "assets/performance_v16/6c57d8eabb7e1ded.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1536,
+        1024
+      ],
+      "size": [
+        1536,
+        1024
+      ],
+      "lossless": false
+    },
+    "assets/journey_v03/charm.png": {
+      "url": "assets/performance_v16/b60c18817924b6c5.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1024,
+        1536
+      ],
+      "size": [
+        1024,
+        1536
+      ],
+      "lossless": true
+    },
+    "assets/journey_v03/dad_bag_clean.png": {
+      "url": "assets/performance_v16/52b23605beb17683.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1672,
+        941
+      ],
+      "size": [
+        1672,
+        941
+      ],
+      "lossless": false
+    },
+    "assets/journey_v03/mom_bag_clean.png": {
+      "url": "assets/performance_v16/de61cdc05caf5128.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1536,
+        1024
+      ],
+      "size": [
+        1536,
+        1024
+      ],
+      "lossless": false
+    },
+    "assets/mom.png": {
+      "url": "assets/performance_v16/cca7f2e73bf43e8e.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1800,
+        1920
+      ],
+      "size": [
+        1800,
+        1920
+      ],
+      "lossless": true
+    },
+    "assets/props_v01.png": {
+      "url": "assets/performance_v16/0d61dd45bf0d2b1e.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1774,
+        887
+      ],
+      "size": [
+        1774,
+        887
+      ],
+      "lossless": true
+    },
+    "assets/refinements_v12/album_repair_v04.png": {
+      "url": "assets/performance_v16/5c91b73a9bcb59a0.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1536,
+        1024
+      ],
+      "size": [
+        1536,
+        1024
+      ],
+      "lossless": false
+    },
+    "assets/refinements_v12/ddakji_press_v04.png": {
+      "url": "assets/performance_v16/a4432de33671a53e.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1536,
+        1024
+      ],
+      "size": [
+        1536,
+        1024
+      ],
+      "lossless": false
+    },
+    "assets/revision_v02/dad.png": {
+      "url": "assets/performance_v16/a45bba6a81d2f3c0.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1800,
+        1920
+      ],
+      "size": [
+        1800,
+        1920
+      ],
+      "lossless": true
+    },
+    "assets/revision_v02/flowers.png": {
+      "url": "assets/performance_v16/992feff72673ab49.webp",
+      "offset": [
+        2000,
+        1338
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        650,
+        142
+      ],
+      "lossless": true
+    },
+    "assets/revision_v02/front_gate.png": {
+      "url": "assets/performance_v16/d020f148e1873e4a.webp",
+      "offset": [
+        0,
+        1691
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        3200,
+        359
+      ],
+      "lossless": true
+    },
+    "assets/revision_v02/photo_1993.png": {
+      "url": "assets/performance_v16/83cf4c6b20e3e22e.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1536,
+        1024
+      ],
+      "size": [
+        1536,
+        1024
+      ],
+      "lossless": false
+    },
+    "assets/runtime/ej_stand.png": {
+      "url": "assets/performance_v16/9399e21f54065f93.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/characters/ss/ss_point_left_v01.png": {
+      "url": "assets/performance_v16/b88dd83ee4d19aa7.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/characters/ss/ss_point_right_v01.png": {
+      "url": "assets/performance_v16/b57482f8f21fcee9.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/characters/ss/ss_walk_v01.png": {
+      "url": "assets/performance_v16/2ae27e3537f2ccd7.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        3240,
+        1920
+      ],
+      "size": [
+        3240,
+        1920
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/L3_bicycle_v01.png": {
+      "url": "assets/performance_v16/004aaf1ad4b4ca06.webp",
+      "offset": [
+        2470,
+        855
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        170,
+        110
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/L3_mailbox_v01.png": {
+      "url": "assets/performance_v16/4c428bc66974cdbe.webp",
+      "offset": [
+        560,
+        665
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        120,
+        180
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/L3_platform_v01.png": {
+      "url": "assets/performance_v16/46ab70ae09b062ed.webp",
+      "offset": [
+        380,
+        1384
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        380,
+        216
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/L3_pots_v01.png": {
+      "url": "assets/performance_v16/7a0f8876a60f00a7.webp",
+      "offset": [
+        2396,
+        820
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        65,
+        85
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/L3_tap_v02.png": {
+      "url": "assets/performance_v16/2c41d336135d867f.webp",
+      "offset": [
+        2876,
+        1060
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        144,
+        160
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/L3_trunk_v01.png": {
+      "url": "assets/performance_v16/b090e73912814ab8.webp",
+      "offset": [
+        1410,
+        840
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        380,
+        460
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/L4_canopy_v01.png": {
+      "url": "assets/performance_v16/3be375cc11e34fc3.webp",
+      "offset": [
+        1260,
+        660
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        680,
+        430
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/base_v02.png": {
+      "url": "assets/performance_v16/1e532d9ca17839b4.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        3200,
+        2064
+      ],
+      "lossless": false
+    },
+    "assets/runtime/polish/layers/corridor_rail_v04.png": {
+      "url": "assets/performance_v16/c6bbaf5171e5831c.webp",
+      "offset": [
+        0,
+        395
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        3199,
+        133
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/noticeboard_v02.png": {
+      "url": "assets/performance_v16/902a67b2e365bc66.webp",
+      "offset": [
+        535,
+        570
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        160,
+        130
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/slab_support_0_v01.png": {
+      "url": "assets/performance_v16/c8b314ca6963ad97.webp",
+      "offset": [
+        720,
+        528
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        36,
+        432
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/slab_support_1_v01.png": {
+      "url": "assets/performance_v16/537088c3d57caca1.webp",
+      "offset": [
+        2440,
+        528
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        36,
+        432
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/stair_A_connected_v01.png": {
+      "url": "assets/performance_v16/55e7ce4c2990d561.webp",
+      "offset": [
+        695,
+        395
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        440,
+        545
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/layers/stair_B_connected_v01.png": {
+      "url": "assets/performance_v16/29feeba0b14b1de4.webp",
+      "offset": [
+        2065,
+        395
+      ],
+      "originalSize": [
+        3200,
+        2064
+      ],
+      "size": [
+        440,
+        545
+      ],
+      "lossless": true
+    },
+    "assets/runtime/polish/preview/assets/sheets/ej_A_walk_9x4_v05_game.png": {
+      "url": "assets/performance_v16/9731eb66fc19ab5e.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1620,
+        960
+      ],
+      "size": [
+        1620,
+        960
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/fr_caught_left_v01.png": {
+      "url": "assets/performance_v16/de15de9c8aab7612.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/fr_caught_right_v01.png": {
+      "url": "assets/performance_v16/b3bcfc5224686fda.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/fr_hide_left_v01.png": {
+      "url": "assets/performance_v16/d1da2cbb0df6863b.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/fr_hide_right_v01.png": {
+      "url": "assets/performance_v16/e088c9c48f440dce.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/fr_run_v01.png": {
+      "url": "assets/performance_v16/2ad4185e40064935.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1440,
+        960
+      ],
+      "size": [
+        1440,
+        960
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/fr_walk_v01.png": {
+      "url": "assets/performance_v16/700bd19ef10c3f78.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        3240,
+        1920
+      ],
+      "size": [
+        3240,
+        1920
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/shoe_clue_left_v01.png": {
+      "url": "assets/performance_v16/1664bc4a18a6dfb7.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        110,
+        79
+      ],
+      "size": [
+        110,
+        79
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/fr/shoe_clue_right_v01.png": {
+      "url": "assets/performance_v16/58760c4033162f3a.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        103,
+        79
+      ],
+      "size": [
+        103,
+        79
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/ym/ym_count_v01.png": {
+      "url": "assets/performance_v16/0d0132c605e544e0.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/ym/ym_guard_left_v01.png": {
+      "url": "assets/performance_v16/614d3f26c5a41894.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/ym/ym_guard_right_v01.png": {
+      "url": "assets/performance_v16/839693524a178396.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        360,
+        480
+      ],
+      "size": [
+        360,
+        480
+      ],
+      "lossless": true
+    },
+    "assets/runtime/production/characters/ym/ym_walk_v01.png": {
+      "url": "assets/performance_v16/64c641921fa34c98.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        3240,
+        1920
+      ],
+      "size": [
+        3240,
+        1920
+      ],
+      "lossless": true
+    },
+    "assets/spatial_v09/photographers.png": {
+      "url": "assets/performance_v16/d89cfd51757e0fcd.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1774,
+        887
+      ],
+      "size": [
+        1774,
+        887
+      ],
+      "lossless": true
+    },
+    "assets/sprites_v14/family_smile.png": {
+      "url": "assets/performance_v16/03190bd7da404209.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1086,
+        1448
+      ],
+      "size": [
+        1086,
+        1448
+      ],
+      "lossless": true
+    },
+    "assets/sprites_v14/gd_walk.png": {
+      "url": "assets/performance_v16/ab589b557ce3d4e3.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        3240,
+        1920
+      ],
+      "size": [
+        3240,
+        1920
+      ],
+      "lossless": true
+    },
+    "assets/yd.png": {
+      "url": "assets/performance_v16/a0a4b04c1e03889f.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1800,
+        1920
+      ],
+      "size": [
+        1800,
+        1920
+      ],
+      "lossless": true
+    },
+    "assets/yd_actions.png": {
+      "url": "assets/performance_v16/100f089258f71f8a.webp",
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        1440,
+        480
+      ],
+      "size": [
+        1440,
+        480
+      ],
+      "lossless": true
+    }
+  },
+  "json": [
+    "assets/mom.json",
+    "assets/revision_v02/dad.json",
+    "assets/revision_v02/environment.json",
+    "assets/runtime/polish/characters/ss/ss_walk_v01.json",
+    "assets/runtime/polish/config/layers_v02.json",
+    "assets/runtime/polish/preview/assets/sheets/ej_A_walk_9x4_v05_game.json",
+    "assets/runtime/production/characters/fr/fr_walk_v01.json",
+    "assets/runtime/production/characters/ym/ym_walk_v01.json",
+    "assets/sprites_v14/gd_walk.json",
+    "assets/yd.json"
+  ],
+  "stats": {
+    "sourceBytes": 69247174,
+    "packedBytes": 29030000,
+    "sourcePixels": 174786547,
+    "packedPixels": 78530763,
+    "losslessVerified": 47
+  }
+}
