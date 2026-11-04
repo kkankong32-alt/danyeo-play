@@ -1,0 +1,455 @@
+{
+  "canvas": [
+    3200,
+    2064
+  ],
+  "origin": [
+    0,
+    -260
+  ],
+  "scale": 1,
+  "base": "layers/base_v02.png",
+  "layers": [
+    {
+      "id": "L1_noticeboard_v01",
+      "path": "layers/noticeboard_v02.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "behindActors",
+      "bounds": [
+        535,
+        310,
+        695,
+        440
+      ]
+    },
+    {
+      "id": "L2_rail_fascia_v01",
+      "path": "layers/corridor_rail_v04.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "over2f",
+      "gaps": [
+        [
+          840,
+          990
+        ],
+        [
+          2210,
+          2360
+        ]
+      ],
+      "railTop": 135,
+      "concreteTop": 207,
+      "bottom": 268,
+      "note": "Visual occlusion revised after actual upper-corridor run review; feet/floor unchanged."
+    },
+    {
+      "id": "L3_mailbox_v01",
+      "path": "layers/L3_mailbox_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        560,
+        405,
+        680,
+        585
+      ],
+      "footY": 585,
+      "collision": [
+        560,
+        560,
+        680,
+        585
+      ]
+    },
+    {
+      "id": "L3_bicycle_v01",
+      "path": "layers/L3_bicycle_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        2470,
+        595,
+        2640,
+        705
+      ],
+      "footY": 705,
+      "collision": [
+        2470,
+        660,
+        2640,
+        705
+      ]
+    },
+    {
+      "id": "L3_platform_v01",
+      "path": "layers/L3_platform_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        380,
+        1124,
+        760,
+        1340
+      ],
+      "footY": 1340,
+      "collision": [
+        380,
+        1180,
+        760,
+        1340
+      ]
+    },
+    {
+      "id": "L3_flowers_v01",
+      "path": "layers/L3_flowers_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        1950,
+        1050,
+        2700,
+        1220
+      ],
+      "footY": 1220,
+      "collision": [
+        1950,
+        1120,
+        2700,
+        1220
+      ]
+    },
+    {
+      "id": "L3_tap_v01",
+      "path": "layers/L3_tap_v02.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        2860,
+        800,
+        3020,
+        960
+      ],
+      "footY": 960,
+      "collision": [
+        2860,
+        860,
+        3020,
+        960
+      ]
+    },
+    {
+      "id": "L3_pots_v01",
+      "path": "layers/L3_pots_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        2396,
+        560,
+        2461,
+        645
+      ],
+      "footY": 645,
+      "collision": [
+        2396,
+        622,
+        2461,
+        645
+      ]
+    },
+    {
+      "id": "L3_trunk_v01",
+      "path": "layers/L3_trunk_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        1410,
+        580,
+        1790,
+        1040
+      ],
+      "footY": 1040,
+      "collision": [
+        1545,
+        1000,
+        1655,
+        1040
+      ]
+    },
+    {
+      "id": "L4_canopy_v01",
+      "path": "layers/L4_canopy_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "overhead",
+      "bounds": [
+        1260,
+        400,
+        1940,
+        830
+      ],
+      "fadeWhenUnder": 0.42,
+      "coverage": [
+        1260,
+        400,
+        1940,
+        830
+      ]
+    },
+    {
+      "id": "L5_front_v01",
+      "path": "layers/L5_front_v02.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "front"
+    },
+    {
+      "id": "stair_A_connected_v01",
+      "path": "layers/stair_A_connected_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "behindActors",
+      "bounds": [
+        695,
+        135,
+        1135,
+        680
+      ],
+      "stair": "A",
+      "upperFoot": [
+        915,
+        236
+      ],
+      "lowerFoot": [
+        915,
+        660
+      ]
+    },
+    {
+      "id": "stair_B_connected_v01",
+      "path": "layers/stair_B_connected_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "behindActors",
+      "bounds": [
+        2065,
+        135,
+        2505,
+        680
+      ],
+      "stair": "B",
+      "upperFoot": [
+        2285,
+        236
+      ],
+      "lowerFoot": [
+        2285,
+        660
+      ]
+    },
+    {
+      "id": "stair_A_return_v01",
+      "path": "layers/stair_A_return_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        1018,
+        505,
+        1098,
+        680
+      ],
+      "footY": 680,
+      "collision": [
+        1018,
+        600,
+        1098,
+        680
+      ]
+    },
+    {
+      "id": "stair_B_return_v01",
+      "path": "layers/stair_B_return_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        2081,
+        505,
+        2161,
+        680
+      ],
+      "footY": 680,
+      "collision": [
+        2081,
+        600,
+        2161,
+        680
+      ]
+    },
+    {
+      "id": "slab_support_0_v01",
+      "path": "layers/slab_support_0_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        720,
+        268,
+        756,
+        700
+      ],
+      "footY": 700,
+      "collision": [
+        720,
+        675,
+        756,
+        700
+      ]
+    },
+    {
+      "id": "slab_support_1_v01",
+      "path": "layers/slab_support_1_v01.png",
+      "canvas": [
+        3200,
+        2064
+      ],
+      "origin": [
+        0,
+        -260
+      ],
+      "kind": "sorted",
+      "bounds": [
+        2440,
+        268,
+        2476,
+        700
+      ],
+      "footY": 700,
+      "collision": [
+        2440,
+        675,
+        2476,
+        700
+      ]
+    }
+  ],
+  "shoeSizeWorld": [
+    24,
+    14
+  ],
+  "renderOrder": [
+    "base",
+    "behindActors",
+    "2f actors",
+    "over2f",
+    "sorted actors/props/shoe by footY",
+    "overhead",
+    "front",
+    "UI"
+  ]
+}

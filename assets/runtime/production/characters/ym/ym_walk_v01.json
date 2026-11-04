@@ -1,0 +1,37 @@
+{
+  "id": "ym",
+  "image": "ym_walk_v01.png",
+  "cell": [
+    360,
+    480
+  ],
+  "originX": 180,
+  "soleY": 450,
+  "charHeight": 420,
+  "rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "cols": 9,
+  "standCol": 0,
+  "walkCols": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cyclePx": 320,
+  "footlock": 0,
+  "displayHeightIsFinal": false,
+  "gait": {
+    "startPhase": 0.25,
+    "settleSeconds": 0.07
+  },
+  "notes": "No mirroring, deformation, interpolation or synthetic bob. Distance driven phase. Shared scale per direction; pose height variation retained."
+}

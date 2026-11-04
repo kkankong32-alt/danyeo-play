@@ -1,0 +1,55 @@
+{
+  "id": "gd",
+  "image": "gd_walk.png",
+  "cell": [
+    360,
+    480
+  ],
+  "originX": 180,
+  "soleY": 450,
+  "charHeight": 420,
+  "rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "cols": 9,
+  "standCol": 0,
+  "walkCols": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cyclePx": 280,
+  "footlock": 0,
+  "gait": {
+    "startPhase": 0.25,
+    "settleSeconds": 0.07,
+    "passingFrames": [
+      2,
+      3,
+      6,
+      7
+    ]
+  },
+  "displayHeightIsFinal": false,
+  "uniqueWalkPoses": {
+    "left": 8,
+    "right": 8,
+    "down": 3,
+    "up": 8
+  },
+  "directionStrideScale": {
+    "down": 0.48,
+    "up": 0.48,
+    "left": 1,
+    "right": 1
+  },
+  "note": "Painted full-frame animation. Right mirrors symmetric clothing/camera-held silhouette. No leg deformations. Shared cell/sole/origin."
+}

@@ -1,0 +1,114 @@
+{
+ "rows": [
+  "down",
+  "left",
+  "right",
+  "up"
+ ],
+ "cols": 9,
+ "standCol": 0,
+ "walkCols": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "contacts": [
+  1,
+  5
+ ],
+ "phaseOrder": [
+  "right_contact",
+  "right_load",
+  "left_passing",
+  "right_rise",
+  "left_contact",
+  "left_load",
+  "right_passing",
+  "left_rise"
+ ],
+ "id": "ej_A_walk_9x4_v05_game",
+ "image": "ej_A_walk_9x4_v05_game.png",
+ "cell": [
+  180,
+  240
+ ],
+ "originX": 90.0,
+ "soleY": 225.0,
+ "charHeight": 210.0,
+ "cyclePx": 160.0,
+ "plantedX": {
+  "down": [
+   null,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "left": [
+   null,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "right": [
+   null,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "up": [
+   null,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "footlock": 0,
+ "gait": {
+  "startPhase": 0.25,
+  "stopAtPhases": [
+   0.25,
+   0.75
+  ],
+  "settleSeconds": 0.07,
+  "passingFrames": [
+   2,
+   6
+  ],
+  "turnKeepsPhase": true,
+  "restartKeepsPhase": true,
+  "interpolation": "none"
+ },
+ "source": {
+  "path": "art/inbox/20261102_은재_A_4방향_v05/ej_A_walk_9x4_v05.png",
+  "sha256": "a55476b0f1e676950d7e65b87ffddac1d38f3cf6289656bfd1b3b60deeddda5c",
+  "sourceJson": "ej_A_walk_9x4_v05.json",
+  "downscale": 0.5,
+  "deliveryCommit": "4fbbfae434e2336af1a1f121f6071e13f1904958"
+ },
+ "note": "게임용 가공본(0.5배). 원본·설정은 art/inbox/20261102_은재_A_4방향_v05/. plantedX 0은 호환용 자리값(측정값 아님) → footlock 0 고정."
+}

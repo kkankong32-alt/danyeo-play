@@ -1,0 +1,42 @@
+{
+  "id": "ss",
+  "name": "수경",
+  "image": "ss_walk_v01.png",
+  "cell": [
+    360,
+    480
+  ],
+  "originX": 180,
+  "soleY": 450,
+  "charHeight": 420,
+  "rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "cols": 9,
+  "standCol": 0,
+  "walkCols": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cyclePx": 275,
+  "footlock": 0,
+  "displayHeightIsFinal": false,
+  "gait": {
+    "startPhase": 0.25,
+    "settleSeconds": 0.07,
+    "passingFrames": [
+      2,
+      6
+    ]
+  },
+  "notes": "Four-year-old younger sister of young mother; maternal aunt of Eunjae. Independent left/right drawings. Shared scale within each walk direction; no mesh deformation or artificial bob."
+}
